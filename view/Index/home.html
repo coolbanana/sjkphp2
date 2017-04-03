@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Home</title>
+<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+</head>
+<body class="container">
+<div class="row">
+  <div class="col-md-9">
+    <h2>XXXXXX系统</h2>
+    <hr />
+    <form class="form-inline" action="{:url('new_c')}" method="post">
+    <div class="form-group">
+      <label>检查名:</label>
+      <input type="text" class="form-control" name="c_name" required autofocus/>
+    </div>
+    <button type="submit" class="btn btn-default" >新增</button>
+  </form>
+  <hr />
+    <table class="table table-hover table-bordered">
+      <tr class="info">
+        <th class="col-md-1">项目</th>
+        <th class="col-md-6">检查名</th>
+        <th class="col-md-1">人员</th>
+        <th class="col-md-1">得分记录</th>
+      </tr>
+      {volist name="list" id="c"}
+      <tr>
+        <td>{$c.c_id}</td>
+        <td>{$c.c_name}</td>
+        <td><a class="btn btn-sm btn-default" href="{:url('edit?id='.$c.c_id)}" target="_blank"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;详情</a></td>
+        <td><a class="btn btn-sm btn-default" href="{:url('score?id='.$c.c_id)}" target="_blank"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;评分</a></td>
+      </tr>
+      {/volist}
+    </table>
+	</div>
+</div>
+</body>
+</html>

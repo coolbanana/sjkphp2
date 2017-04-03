@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>查看内容</title>
+<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+<script src="/static/js/jquery.form.js"></script>
+<script src="/static/js/jquery.min.js"></script>
+<script  language="JavaScript">
+function del_tb(e_id){
+        confirm_ = confirm('确定要删除这条记录吗？');
+        if(confirm_){
+            $.ajax({
+                type:"POST",
+                url:"{:url('search/index/del')}?e_id="+e_id,
+                success:function(msg){
+                    //alert("test order");
+                    //all delete is success,this can be execute
+                   $("#table_"+e_id).remove();
+                }
+            });
+        }
+    };
+</script>
+</head>
+<body>
+<div class="container">
+<br/>
+<p>检查编号：{$c_id}</p>
+<a role="button" class="btn btn-default btn-lg btn-block" href="{:url('new_e?id='.$c_id)}">新增一条记录</a>
+<br/>
+{volist name="info" id="e" key="i"}
+
+<table class="table table-bordered" id="table_{$e.e_id}">
+  <tr>
+    <th class="col-md-5">图片|问题编号：{$e.e_id}</th>
+    <th class="col-md-2">描述</th>
+    <th class="col-md-2">法规</th>
+    <th class="col-md-2">意见</th>
+    <th class="col-md-1">操作</th>
+  </tr>
+  <tr>
+    <td>
+<form class="form-inline" action="/search/index/up?e_id={$e.e_id}&id={$c_id}" enctype="multipart/form-data" method="post">
+<br/>
+<input style="float:left" type="file" name="image" />
+<input style="float:left" type="submit" value="上传图片" />
+</form>
+<div style="clear:both">
+{volist name="e.pic" id="vo" key="j"}
+<notemply name="$vo.id">
+<img src="/uploads/{$vo.img_url}" width="200" height="100"/>
+</notemply>
+{/volist}
+</div>
+</td>
+<form class="formedit" id="form{$e.e_id}" method="post" action="{:url('search/index/save')}?e_id={$e.e_id}">
+<td>
+<div><textarea class="form-control" rows="12" name="desc">{$e.desc}</textarea></div>
+</td>
+<td>
+</td>
+<td>
+<div><textarea class="form-control" rows="12" name="tip">{$e.tip}</textarea></div>
+</td>
+<td>
+<br/><br/><br/>
+  <a class="btn btn-sm btn-default" href="javascript:;" onclick='document.getElementById("form{$e.e_id}").submit();'><i class="glyphicon glyphicon-ok"></i>&nbsp;保存</a>
+<br/><br/><br/>
+  <a class="btn btn-sm btn-default"  href="javascript:;" onclick="del_tb({$e.e_id})"><i class="glyphicon glyphicon-remove"></i>&nbsp;删除</a>
+</td>
+</form>
+</tr>
+</table>
+
+{/volist}
+<a role="button" class="btn btn-default btn-lg btn-block" href="{:url('new_e?id='.$c_id)}">新增一条记录</a>
+</div>
+</body>
+</html>
