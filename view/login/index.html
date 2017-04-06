@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>用户登录</title>
+<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/static/signin.css" />
+<link rel="stylesheet" href="/static/top.css" />
+</head>
+<body>
+<div class="back0">
+<div class="container" id="nav1">
+  <div id="nav2">
+      <div id="navLimg"><img src="/static/imgs/logo.jpg" /></div>
+      <div id="navLtxt">欢迎使用交通运输企业安全生产标准化考评管理系统，当前用户：{$Think.session.name}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{:url('login/logout')}">退出</a></div>
+  </div>
+</div>
+<div id="log" class="container">
+<div>
+  <form class="form-signin" action="{:url('login')}" method="post">
+    <h2>请登录</h2>
+    <div class="form-group">
+      <label for="username" class="sr-only">用户名</label>
+      <input type="text" class="form-control" name="username" id="username" placeholder="请输入用户名" required autofocus/>
+    </div>
+    <div class="form-group">
+      <label for="password" class="sr-only">密码</label>
+      <input type="password" class="form-control" name="password" id="password" placeholder="请输入密码" required/>
+      <p class="help-block">&nbsp;</p>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+  </form>
+</div>
+<br/>
+  <div id="footer">
+    <p>苏交科集团股份有限公司&nbsp;&nbsp;&nbsp;&nbsp;@2017. All Rights Reserved.</p>
+  </div>
+</div>
+</body></html>
